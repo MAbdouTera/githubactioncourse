@@ -1,0 +1,10 @@
+on: 
+  schedule:
+    - cron: "0 0 * * *"
+jobs:
+  daily-taks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Print Message"
+        run: echo "Runing The Schedule Task"
+  
