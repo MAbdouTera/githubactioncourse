@@ -1,21 +1,15 @@
 on:
   workflow_dispatch:
-
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
+  job1:
     strategy:
+      fail-fast: false
+      max-parallel:3
       matrix:
-        node-version: [16, 18]
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-
-      - run: |
-          npm install
-          npm run build
+        os: [ubuntu-latest,windows-lateset,macos-latest]
+        node_version: [14.x,15.x,16.x]
+  runs-on: ${{matrix.os}}
+  steps:  
+    - uses: actions/setup-node@v3.6.0
+      with: 
+        node-version: ${{matrix.node_version}}
